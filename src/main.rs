@@ -31,8 +31,9 @@ fn main() {
     //cargo cada elemento con un 8 
     for (i, fila) in _vector_columnas.iter().enumerate() {
         for(j, columna) in fila.iter().enumerate() {
-            println!("[fila: {}][columna: {}]= {}", i, j, columna);
+            print!("[f: {}][c: {}]= {}", i, j, columna);
         }
+        println!("");
     }
     
         
