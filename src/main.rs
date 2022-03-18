@@ -28,17 +28,23 @@ fn main() {
     // vectores anidados
     _vector_columnas=vec![vec![0.0;_total_columnas as usize];_cant_restricciones as usize];
 
-    //muestro cada linea con un salto de linea.
-    for _c_r in 0 .. _cant_restricciones { //filas
-        for _t_c in 0 .. _total_columnas { //columnas
-            print!("Restriccion {:?}, {:?}; ", _c_r, _t_c); //muestro datos
+    //cargo cada elemento con un 8 
+    for (i, fila) in _vector_columnas.iter().enumerate() {
+        for(j, columna) in fila.iter().enumerate() {
+            println!("[fila: {}][columna: {}]= {}", i, j, columna);
         }
-        println!(""); //salto de linea
-
-       //print!("Restriccion {:?}; ", _c_r);
-   }
+    }
+    
         
+    //muestro cada linea con un salto de linea.
+    // for _c_r in 0 .. _cant_restricciones { //filas
+    //     for _t_c in 0 .. _total_columnas { //columnas
+    //         print!("Restriccion {:?}, {:?}; ", _c_r, _t_c); //muestro datos
+    //     }
+    //     println!(""); //salto de linea
 
+    // //print!("Restriccion {:?}; ", _c_r);
+    // }
 
 
 
