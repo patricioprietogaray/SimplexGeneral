@@ -13,8 +13,9 @@ fn main() {
     let _cant_var_holgura=_cant_productos;
     println!("El total de las variables de holgura son: {}", _cant_var_holgura);
 
-    let _cant_restricciones=ingreso_por_teclado("¿Cuantos procesos tendran los productos a fabricar?");
-    println!("El total de restricciones es: {} ", _cant_restricciones);
+    let _cant_restricciones=1+_cant_var_holgura;
+    //let _cant_restricciones=ingreso_por_teclado("¿Cuantas restricciones tendran los productos a fabricar?");
+    println!("El total de restricciones es: {} (1 es la funcion objetivo) ", _cant_restricciones);
 
     //productos+z+r+holgura El 2 es z+r
     let mut _total_columnas =_cant_productos+_cant_var_holgura+2;
@@ -31,7 +32,8 @@ fn main() {
     //cargo cada elemento con un 8 
     for (i, fila) in _vector_columnas.iter().enumerate() {
         for(j, columna) in fila.iter().enumerate() {
-            print!("[f: {}][c: {}]= {}", i, j, columna);
+            //print!("[f: {}][c: {}]= {}", i, j, columna);
+            print!("{columna: <10} ");
         }
         println!("");
     }
