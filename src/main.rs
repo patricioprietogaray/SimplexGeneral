@@ -1,3 +1,4 @@
+use std::arch::x86_64::_MM_GET_EXCEPTION_MASK;
 use std::io;
 use std::str::FromStr;
 
@@ -25,11 +26,6 @@ fn main() {
     println!("");
     linea_de_la_tabla(_total_columnas);
 
-    // for i in 1..=((_total_columnas+1)*10) {
-    //     print!("_");
-    // }
-    // println!("");
-
     // columna titulos encolumnados (eje y)
     print!("* {0: <7} *", "");
     print!(" {0: <7}  *", "Z");
@@ -44,34 +40,22 @@ fn main() {
 
     linea_de_la_tabla(_total_columnas);
     
-    // for i in 1..=_cant_productos {
-    //     //concatenar dos cosas
-    //     let _i_string=i.to_string();
-    //     let _equis = "x";
-    //     let _concatenado= format!("x{}", _i_string);
-    //     print!(" {0: <7}  |", _concatenado);
-    // }
-
-    // for h in 1..=_cant_var_holgura {
-    //     // concatenar
-    //     let _s_string=h.to_string();
-    //     let _hache="h";
-    //     let _concatenar_holgura=format!("s{}", _s_string);
-    //     print!(" {0: <7} |", _concatenar_holgura);
-    // }
-
-
-
-
-    // println!("| {0: <7} | {1: <7} | {2: <7} | {3: <7} | {4: <7} | {5: <7} | {6: <7} |",
-    // " ","Z","x1","x2", "S1", "S2", "R");
-
-
     //creo un vector vacio
-    //let mut _vector_columnas:Vec<f64> = Vec::new();
+    let mut _tabla_origen:Vec<f64> = Vec::new();
+
+    let _elementos_tabla=(_cant_var_holgura + 1)*_total_columnas;
+
+    _tabla_origen=vec![0.0;_elementos_tabla as usize];
+
+    
+
+
 
     //asigno los espacios inicializadon en 0 (0.0 porque es f64) ojo acepta solo usize
     // vectores anidados
+
+
+
     //_vector_columnas=vec![vec![0.0;_total_columnas as usize];_cant_restricciones as usize];
 
     //cargo cada linea con un salto de linea.
@@ -196,9 +180,8 @@ fn variables_en_el_titulo(_cant_variables:isize, _x_o_s: &char) {
 }
 
 fn linea_de_la_tabla(_total_columnas:isize) {
-    for i in 1..=((_total_columnas+1)*10) {
+    for i in 1..=((_total_columnas+1)*10)+3 {
         print!("*");
     }
     println!("");
-
 }
