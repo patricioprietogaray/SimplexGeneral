@@ -24,8 +24,7 @@ fn main() {
     println!("Total de columnas es {}", _total_columnas);
 
     println!("");
-    linea_de_la_tabla(_total_columnas);
-
+    
     // calculo cuantos elementos tendrá la tabla
     let _elementos_tabla=(_cant_restricciones)*_total_columnas;
     let _elementos_tabla=_elementos_tabla as usize;
@@ -47,8 +46,10 @@ fn main() {
 
 
     // mostrar la tabla 
+    linea_de_la_tabla(_total_columnas);
     dibujar_encabezado_tabla(_cant_productos, _cant_var_holgura, _total_columnas);
     let mut _fila=0;
+    println!("el total de elementos de la tabla es: {}", _tabla_origen.len());
     for indice in 0.._tabla_origen.len() {
         
         if indice==0 {
@@ -61,9 +62,8 @@ fn main() {
                 concatenar_titulo_de_la_tabla(_fila, &'s');
                 //let _titulo_fila = "{}{}";
                 //print!("* {0: <7}  * {1: <7}  *","",_tabla_origen[indice]);
-            } else {
-                print!(" {0: <7}  *", _tabla_origen[indice]);
             }
+            print!(" {0: <7}  *", _tabla_origen[indice]);
         }
         
     }
@@ -118,7 +118,7 @@ fn variables_en_el_titulo(_cant_variables:isize, _x_o_s: &char) {
 fn concatenar_titulo_de_la_tabla(_nro_variable:isize, _letra:&char) {
     // concatenar
     let _concatenar=format!("{}{}", _letra, _nro_variable);
-    print!(" {0: <7} *", _concatenar);
+    print!("* {0: <7} *", _concatenar);
 }
 
 fn linea_de_la_tabla(_total_columnas:isize) {
