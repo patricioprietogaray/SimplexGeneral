@@ -49,7 +49,7 @@ fn main() {
     linea_de_la_tabla(_total_columnas);
     dibujar_encabezado_tabla(_cant_productos, _cant_var_holgura, _total_columnas);
     let mut _fila=0;
-    println!("el total de elementos de la tabla es: {}", _tabla_origen.len());
+    //println!("el total de elementos de la tabla es: {}", _tabla_origen.len());
     for indice in 0.._tabla_origen.len() {
         
         if indice==0 {
