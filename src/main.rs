@@ -1,4 +1,4 @@
-use std::arch::x86_64::_MM_GET_EXCEPTION_MASK;
+// use std::arch::x86_64::_MM_GET_EXCEPTION_MASK;
 use std::io;
 use std::str::FromStr;
 
@@ -26,6 +26,109 @@ fn main() {
     println!("");
     linea_de_la_tabla(_total_columnas);
 
+    // calculo cuantos elementos tendrá la tabla
+    let _elementos_tabla=(_cant_restricciones)*_total_columnas;
+    let _elementos_tabla=_elementos_tabla as usize;
+
+    //creo un vector vacio
+    let mut _tabla_origen:Vec<f64> = Vec::new();
+
+    // asigno cada valor a cada elemento
+    println!("---Ingrese el valor del elemento: ");
+    let mut _indice=0;
+    let mut _valor_elemento_tabla=0.0;
+    while _indice < (_elementos_tabla) {
+        _valor_elemento_tabla=ingreso_por_teclado_para_la_tabla();
+        _tabla_origen.push(_valor_elemento_tabla);
+        println!("Indice: {}, Valor: {}", _indice, _valor_elemento_tabla);
+        _indice = _indice + 1;
+        println!("Ingrese el elemento de la tabla: ");
+    }
+
+
+    // mostrar la tabla 
+    dibujar_encabezado_tabla(_cant_productos, _cant_var_holgura, _total_columnas);
+    let mut _fila=0;
+    for indice in 0.._tabla_origen.len() {
+        
+        if indice==0 {
+            print!("* {0: <7} * {1: <7}  *","Z",_tabla_origen[indice]);
+        }
+        if indice>0 {
+            if indice % _total_columnas as usize == 0 {
+                println!("");
+                _fila += 1;
+                concatenar_titulo_de_la_tabla(_fila, &'s');
+                //let _titulo_fila = "{}{}";
+                //print!("* {0: <7}  * {1: <7}  *","",_tabla_origen[indice]);
+            } else {
+                print!(" {0: <7}  *", _tabla_origen[indice]);
+            }
+        }
+        
+    }
+    println!("");
+    linea_de_la_tabla(_total_columnas);
+
+    // cargo toda la matriz de una!
+    // _tabla_origen=vec![ingreso_por_teclado_para_la_tabla(); _elementos_tabla];
+    //_tabla_origen=vec![0.0;_elementos_tabla as usize];
+
+    // // for indice in 0.._elementos_tabla {
+    //     let elemento=ingreso_por_teclado_para_la_tabla();
+        
+    //     _tabla_origen.push(elemento);
+    // // }
+
+
+    // ingreso_por_teclado_para_la_tabla();
+
+
+}
+
+fn ingreso_por_teclado_para_la_tabla() -> f64 {
+    let mut _dato=String::new();
+    io::stdin().read_line(&mut _dato).ok().expect("Error al ingresar los datos por el teclado!");
+    let _dato=f64::from_str(&_dato.trim()).unwrap();
+    _dato
+}
+
+
+fn ingreso_por_teclado(_mensaje: &str) -> isize {
+    println!("{}",_mensaje);
+    let mut _cantidad = String::new();
+    io::stdin().read_line(&mut _cantidad).ok().expect("Error al ingresar los datos por el teclado!");
+    let _cantidad=isize::from_str(&_cantidad.trim()).unwrap();
+    _cantidad
+}
+
+fn variables_en_el_titulo(_cant_variables:isize, _x_o_s: &char) {
+    
+    for a in 1..=_cant_variables {
+        // concatenar
+        let _cardinal=a;
+        let _letra=_x_o_s;
+        // let _concatenar=format!("{}{}", _letra, _cardinal);
+        // print!(" {0: <7} *", _concatenar);
+        concatenar_titulo_de_la_tabla(_cardinal, _letra);
+    }
+
+}
+
+fn concatenar_titulo_de_la_tabla(_nro_variable:isize, _letra:&char) {
+    // concatenar
+    let _concatenar=format!("{}{}", _letra, _nro_variable);
+    print!(" {0: <7} *", _concatenar);
+}
+
+fn linea_de_la_tabla(_total_columnas:isize) {
+    for i in 1..=((_total_columnas+1)*10)+3 {
+        print!("*");
+    }
+    println!("");
+}
+
+fn dibujar_encabezado_tabla(_cant_productos:isize, _cant_var_holgura:isize, _total_columnas:isize) {
     // columna titulos encolumnados (eje y)
     print!("* {0: <7} *", "");
     print!(" {0: <7}  *", "Z");
@@ -39,16 +142,7 @@ fn main() {
     println!(" {0: <7}  *", "R");
 
     linea_de_la_tabla(_total_columnas);
-    
-    //creo un vector vacio
-    let mut _tabla_origen:Vec<f64> = Vec::new();
-
-    let _elementos_tabla=(_cant_var_holgura + 1)*_total_columnas;
-
-    _tabla_origen=vec![0.0;_elementos_tabla as usize];
-
-    
-
+}
 
 
     //asigno los espacios inicializadon en 0 (0.0 porque es f64) ojo acepta solo usize
@@ -157,31 +251,3 @@ fn main() {
 
     
 
-}
-
-fn ingreso_por_teclado(_mensaje: &str) -> isize {
-    println!("{}",_mensaje);
-    let mut _cantidad = String::new();
-    io::stdin().read_line(&mut _cantidad).ok().expect("Error al ingresar los datos por el teclado!");
-    let _cantidad=isize::from_str(&_cantidad.trim()).unwrap();
-    _cantidad
-}
-
-fn variables_en_el_titulo(_cant_variables:isize, _x_o_s: &char) {
-    
-    for a in 1..=_cant_variables {
-        // concatenar
-        let _cardinal=a.to_string();
-        let _letra=_x_o_s;
-        let _concatenar=format!("{}{}", _letra, _cardinal);
-        print!(" {0: <7} *", _concatenar);
-    }
-
-}
-
-fn linea_de_la_tabla(_total_columnas:isize) {
-    for i in 1..=((_total_columnas+1)*10)+3 {
-        print!("*");
-    }
-    println!("");
-}
