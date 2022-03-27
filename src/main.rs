@@ -70,20 +70,17 @@ fn main() {
     println!("");
     linea_de_la_tabla(_total_columnas);
 
-    // cargo toda la matriz de una!
-    // _tabla_origen=vec![ingreso_por_teclado_para_la_tabla(); _elementos_tabla];
-    //_tabla_origen=vec![0.0;_elementos_tabla as usize];
+    // clonar la tabla para que se tenga una original y otra para los calculos actuales
+    let _tabla_destino = _tabla_origen.clone();
 
-    // // for indice in 0.._elementos_tabla {
-    //     let elemento=ingreso_por_teclado_para_la_tabla();
-        
-    //     _tabla_origen.push(elemento);
-    // // }
-
-
-    // ingreso_por_teclado_para_la_tabla();
-
-
+    //averiguar la columna pivot
+    // saber cual es el menor en z (_columna_pivot)
+    // averiguar cuales elementos corresponden a la columna_pivot de cada fila de holgura o Sx
+    
+    
+    
+    // saber cuantas variables de hogura hay (_cant_var_holgura)
+    
 }
 
 fn ingreso_por_teclado_para_la_tabla() -> f64 {
@@ -99,6 +96,7 @@ fn ingreso_por_teclado(_mensaje: &str) -> isize {
     let mut _cantidad = String::new();
     io::stdin().read_line(&mut _cantidad).ok().expect("Error al ingresar los datos por el teclado!");
     let _cantidad=isize::from_str(&_cantidad.trim()).unwrap();
+    
     _cantidad
 }
 
@@ -122,7 +120,7 @@ fn concatenar_titulo_de_la_tabla(_nro_variable:isize, _letra:&char) {
 }
 
 fn linea_de_la_tabla(_total_columnas:isize) {
-    for i in 1..=((_total_columnas+1)*10)+3 {
+    for i in 1..=((_total_columnas+1)*10)+4 {
         print!("*");
     }
     println!("");
@@ -142,6 +140,8 @@ fn dibujar_encabezado_tabla(_cant_productos:isize, _cant_var_holgura:isize, _tot
     println!(" {0: <7}  *", "R");
 
     linea_de_la_tabla(_total_columnas);
+
+
 }
 
 
