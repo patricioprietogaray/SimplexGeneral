@@ -11,13 +11,11 @@ fn main() {
     let _cant_beneficios=_cant_productos;
     println!("El total de beneficios para completar la función objetivo es: {} ", _cant_beneficios);
 
-    let _cant_var_holgura=_cant_productos;
-    println!("El total de las variables de holgura son: {}", _cant_var_holgura);
-
-    let _cant_restricciones=1+_cant_var_holgura;
-    //let _cant_restricciones=ingreso_por_teclado("¿Cuantas restricciones tendran los productos a fabricar?");
-    println!("El total de restricciones es: {} (1 es la funcion objetivo) ", _cant_restricciones);
-
+    let _cant_restricciones=ingreso_por_teclado("¿Cuantos restricciones (tendrán los productos a fabricar) entrarán en el cálculo del Método Simplex?: ");
+    println!("El total de las variables de holgura ingresadas son: {} ", _cant_restricciones);
+    println!("El total de restricciones es: {} (la fila 0 es la funcion objetivo) ", _cant_restricciones + 1);
+    let _cant_var_holgura=_cant_restricciones;
+    
     //productos+z+r+holgura El 2 es z+r
     let mut _total_columnas =_cant_productos+_cant_var_holgura+2;
 
@@ -26,16 +24,48 @@ fn main() {
     println!("");
     
     // calculo cuantos elementos tendrá la tabla
-    let _elementos_tabla=(_cant_restricciones)*_total_columnas;
-    let _elementos_tabla=_elementos_tabla as usize;
+    let _total_elementos_tabla=((_cant_restricciones)*_total_columnas) + _total_columnas; //el ultimo total
+    // de columnas es la variable Funcion objetivo
+    let _total_elementos_tabla=_total_elementos_tabla;
 
     //creo un vector vacio
     let mut _tabla_origen:Vec<f64> = Vec::new();
 
     // asigno cada valor a cada elemento
-    println!("---Ingrese el valor del elemento: ");
     let mut _indice=0;
     let mut _valor_elemento_tabla=0.0;
+    let mut _total_filas_tabla_origen=_total_elementos_tabla/_total_columnas;
+
+
+    
+    //cargar todo el vector
+    while _indice < _total_elementos_tabla {
+        if _indice < (_total_elementos_tabla / _total_columnas) {
+            println!("Fila Z")
+        }
+        // ver como enumerar las columnas desde z a r se me ocurre con un for con productos y luego con 
+        // restricciones o s1 o variables de holgura,
+
+
+
+    }
+    
+    
+    
+    //if 
+    //println!("Fila Z o fila 0 o Fila de la funcion objetivo");
+    //println!("Fila Z, Columna Z: 1");
+    //_valor_elemento_tabla=1.0;
+    //_tabla_origen.push(_valor_elemento_tabla);
+
+
+
+
+
+
+
+    //println!("---Ingrese el valor del elemento: ");
+    
     while _indice < (_elementos_tabla) {
         _valor_elemento_tabla=ingreso_por_teclado_para_la_tabla();
         _tabla_origen.push(_valor_elemento_tabla);
@@ -76,7 +106,7 @@ fn main() {
     //averiguar la columna pivot
     // saber cual es el menor en z (_columna_pivot)
     // averiguar cuales elementos corresponden a la columna_pivot de cada fila de holgura o Sx
-    
+
     
     
     // saber cuantas variables de hogura hay (_cant_var_holgura)
