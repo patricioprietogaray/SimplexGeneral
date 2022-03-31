@@ -43,6 +43,7 @@ fn main() {
         if _indice < (_total_elementos_tabla / _total_columnas) {
             println!("Fila Z")
         }
+        _indice +=1;
         // ver como enumerar las columnas desde z a r se me ocurre con un for con productos y luego con 
         // restricciones o s1 o variables de holgura,
 
@@ -66,13 +67,13 @@ fn main() {
 
     //println!("---Ingrese el valor del elemento: ");
     
-    while _indice < (_elementos_tabla) {
-        _valor_elemento_tabla=ingreso_por_teclado_para_la_tabla();
-        _tabla_origen.push(_valor_elemento_tabla);
-        println!("Indice: {}, Valor: {}", _indice, _valor_elemento_tabla);
-        _indice = _indice + 1;
-        println!("Ingrese el elemento de la tabla: ");
-    }
+    // while _indice < (_elementos_tabla) {
+    //     _valor_elemento_tabla=ingreso_por_teclado_para_la_tabla();
+    //     _tabla_origen.push(_valor_elemento_tabla);
+    //     println!("Indice: {}, Valor: {}", _indice, _valor_elemento_tabla);
+    //     _indice = _indice + 1;
+    //     println!("Ingrese el elemento de la tabla: ");
+    // }
 
 
     // mostrar la tabla 
